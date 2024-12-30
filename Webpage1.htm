@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulips 💻💖</title>
+    
+    <!-- Favicon (cute icon for the tab) -->
+    <link rel="icon" href="love.png" type="image/png">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffd0b0, #ff9a9e);
+            font-family: 'Arial', sans-serif;
+            color: #5e004d;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            position: relative;
+            overflow-y: auto;
+        }
+        h1 {
+            font-size: 3.5em;
+            color: #fff;
+            margin: 50px 0;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            animation: blinkText 1.5s infinite alternate;
+        }
+        @keyframes blinkText {
+            50% { color: #ff69b4; }
+        }
+        .bubble-button {
+            padding: 20px 40px;
+            font-size: 1.8em;
+            background: linear-gradient(135deg, #ff6f91, #ff9671);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+        .bubble-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .message {
+            display: none;
+            font-size: 2em;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            max-width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease forwards;
+        }
+        .message.hoodie-guy {
+            background: #61dafb;
+            align-self: flex-end;
+        }
+        .message.tulisa {
+            background: #ff86a0;
+            align-self: flex-start;
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: sparkle 3s infinite ease-in-out;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        footer {
+            font-size: 1.2em;
+            color: #fff;
+            margin-top: 50px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            margin-top: 50px;
+        }
+        .close-button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background: #ff6f91;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .close-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        /* Add animation for hiding chat messages */
+        .fadeOut {
+            animation: fadeOut 1s forwards;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tulips 💻💖</h1>
+    <div class="chat-container">
+        <button class="bubble-button" onclick="revealMessage()">Start Our Chat 💬</button>
+        <div class="message hoodie-guy" id="message1">
+            <strong>Hoodie Guy:</strong> "Hey, you're the best thing that happened to me! ❤️"
+        </div>
+        <div class="message tulisa" id="message2">
+            <strong>Tulisa:</strong> "Aww, you're so sweet! I feel the same way! 🥰"
+        </div>
+        <div class="message hoodie-guy" id="message3">
+            <strong>Hoodie Guy:</strong> "Every moment with you is pure magic. ✨"
+        </div>
+        <div class="message tulisa" id="message4">
+            <strong>Tulisa:</strong> "I can't wait to keep making memories with you! 💕"
+        </div>
+        <button class="close-button" onclick="closeChat()">Close Chat ❌</button>
+    </div>
+    <footer>Made with love and sparkles, just for you! 💫</footer>
+
+    <script>
+        function revealMessage() {
+            const messages = document.querySelectorAll('.message');
+            let index = 0;
+            messages.forEach((message, i) => {
+                message.style.display = 'none';
+            });
+            function showNextMessage() {
+                if (index < messages.length) {
+                    messages[index].style.display = 'block';
+                    index++;
+                    setTimeout(showNextMessage, 1000);  // 1 second delay between messages
+                }
+            }
+            showNextMessage();
+        }
+
+        function closeChat() {
+            const messages = document.querySelectorAll('.message');
+            messages.forEach((message) => {
+                message.classList.add('fadeOut'); // Apply fadeOut animation to each message
+            });
+
+            // Optionally, change the button text after closing chat
+            const closeButton = document.querySelector('.close-button');
+            closeButton.innerHTML = 'Chat Closed ✨';
+            closeButton.disabled = true; // Disable the button after closing chat
+        }
+
+        // Sparkle generator
+        const body = document.body;
+        for (let i = 0; i < 50; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.top = `${Math.random() * 100}vh`;
+            sparkle.style.left = `${Math.random() * 100}vw`;
+            sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            sparkle.style.animationDelay = `${Math.random() * 3}s`;
+            body.appendChild(sparkle);
+        }
+    </script>
+</body>
+</html>
